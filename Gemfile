@@ -20,6 +20,7 @@ gem 'simple_form'
 gem 'title'
 gem 'uglifier'
 gem 'puma'
+gem 'slim'
 
 group :development do
   gem 'foreman'
