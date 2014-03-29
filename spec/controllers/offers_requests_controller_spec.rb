@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe OffersRequestsController do
-  describe '#index' do
-    subject { get :index }
+  describe '#new' do
+    subject { get :new }
 
     it { should be_success }
 
     describe 'assigns' do
-      before { get :index }
+      before { get :new }
 
       subject { assigns(example.metadata[:name]) }
 

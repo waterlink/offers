@@ -1,5 +1,5 @@
 class OffersRequestsController < ApplicationController
-  def index
+  def new
     @offers_request = OffersRequest.new
   end
 end
