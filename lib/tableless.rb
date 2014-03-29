@@ -5,7 +5,14 @@ module Tableless
 
   module ClassMethods
     def tableless
+      include TablelessInstance
       extend TablelessDsl
+    end
+  end
+
+  module TablelessInstance
+    def tableless?
+      true
     end
   end
 

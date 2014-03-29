@@ -11,7 +11,11 @@ class Tableless::ExampleClass < ActiveRecord::Base
 end
 
 describe Tableless do
+  let!(:sample) { Tableless::ExampleClass.new }
+
   subject { sample }
+
+  it { should be_tableless }
 
   context 'valid sample' do
     let!(:sample) { Tableless::ExampleClass.new name: 'test', id: 35 }
