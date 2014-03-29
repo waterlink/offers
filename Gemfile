@@ -23,6 +23,7 @@ gem 'puma'
 gem 'slim'
 gem 'bitters'
 gem 'i18n-tasks'
+gem 'httparty'
 
 group :development do
   gem 'foreman'

@@ -1,12 +1,16 @@
 Rails.configuration.api = begin
-  YAML::load_file 'config/api.yml'
+  YAML::load_file('config/api.yml')[Rails.env]
 rescue
-  api_config = YAML::load ERB.new(File.read 'config/api.yml.erb').result
+  api_config = YAML::load(ERB.new(File.read 'config/api.yml.erb').result)[Rails.env]
 
   messages = []
 
   if api_config['api_key'].blank?
     messages << 'API_KEY is not specified'
+  end
+
+  if api_config['endpoint'].blank?
+    messages << 'API_ENDPOINT is not specified'
   end
 
   api_config['params'].each do |k, v|

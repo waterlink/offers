@@ -1,10 +1,34 @@
-params:
-  appid: <%= ENV['API_APPID'] %>
-  format: json
-  device_id: <%= ENV['API_DEVICE_ID'] %>
-  locale: <%= ENV['API_LOCALE'] %>
-  ip: <%= ENV['API_IP'] %>
-  offer_types: <%= ENV['API_OFFER_TYPES'] %>
-  endpoint: <%= ENV['API_ENDPOINT'] %>
+development: &base
+  params: &params_base
+    appid: <%= ENV['API_APPID'] %>
+    format: json
+    device_id: <%= ENV['API_DEVICE_ID'] %>
+    locale: <%= ENV['API_LOCALE'] %>
+    ip: <%= ENV['API_IP'] %>
+    offer_types: <%= ENV['API_OFFER_TYPES'] %>
 
-api_key: <%= ENV['API_KEY'] %>
+  endpoint: <%= ENV['API_ENDPOINT'] %>
+  api_key: <%= ENV['API_KEY'] %>
+  signature_header: <%= ENV['API_SIGNATURE_HEADER'] %>
+
+staging:
+  <<: *base
+
+production:
+  <<: *base
+
+test:
+  <<: *base
+  endpoint: http://api.example.com/v1/offers.json
+  api_key: funny_api_key
+  signature_header: X-Signature
+  params:
+    <<: *params_base
+    appid: funny_app_id
+    device_id: some_device_id
+    locale: en
+    ip: 127.0.0.1
+    offer_types: 442
+
+
+
