@@ -32,6 +32,12 @@ describe Api::Offers do
         it 'returns some offers' do
           expect(subject.query offers_request).to_not be_blank
         end
+
+        it 'returns list of Offers instances' do
+          subject.query(offers_request).each do |offer|
+            expect(offer).to be_a Offer
+          end
+        end
       end
 
       context 'bad params' do
@@ -95,8 +101,8 @@ offers:
 
   let!(:no_offers_response) do
     YAML::load("
-code: NO CONTENT
-message: NO CONTENT
+code: NO_CONTENT
+message: NO_CONTENT
     ").to_json
   end
 

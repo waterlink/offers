@@ -5,7 +5,8 @@ class Api::Offers
   format :json
 
   def self.query(params)
-    get_offers get Rails.configuration.api['endpoint'], query: params_with_auth(params)
+    offers = get_offers get Rails.configuration.api['endpoint'], query: params_with_auth(params)
+    deserialize offers
   end
 
   def self.signature(params, api_key)
@@ -30,16 +31,24 @@ class Api::Offers
     check_signature response.body,
                     response.headers[Rails.configuration.api['signature_header']],
                     Rails.configuration.api['api_key']
-    if response.body['message'] == 'NO CONTENT'
+    if response['message'] == 'NO_CONTENT'
       []
     else
-      response.body['offers']
+      response['offers']
     end
   end
 
   def self.check_signature(body, signature, api_key)
     unless digest_algorightm("#{body}#{api_key}") == signature
       raise Exception.new 'Offers server API responded with bad signature'
+    end
+  end
+
+  def self.deserialize(offers)
+    offers.map do |offer|
+      offer = offer.slice 'title', 'link', 'thumbnail', 'payload'
+      offer['thumbnail'] = offer['thumbnail']['lowres']
+      Offer.new offer
     end
   end
 end
