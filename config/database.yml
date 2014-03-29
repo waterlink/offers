@@ -1,0 +1,14 @@
+development: &default
+  adapter: postgresql
+  database: offers_development
+  port: 5433
+  encoding: utf8
+  min_messages: warning
+  pool: 5
+  timeout: 5000
+  user: help
+  password: help3
+
+test:
+  <<: *default
+  database: offers_test
