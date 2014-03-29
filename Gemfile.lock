@@ -179,10 +179,6 @@ GEM
       rspec-mocks (~> 2.14.0)
     safe_yaml (1.0.1)
     sass (3.3.4)
-    sass-rails (4.0.1)
-      railties (>= 4.0.0, < 5.0)
-      sass (>= 3.1.10)
-      sprockets-rails (~> 2.0.0)
     shoulda-matchers (2.5.0)
       activesupport (>= 3.0.0)
     simple_form (3.0.1)
@@ -259,7 +255,6 @@ DEPENDENCIES
   rails (>= 4.0.3)
   recipient_interceptor
   rspec-rails (>= 2.14)
-  sass-rails
   shoulda-matchers
   simple_form
   simplecov
