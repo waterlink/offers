@@ -22,6 +22,7 @@ gem 'uglifier'
 gem 'puma'
 gem 'slim'
 gem 'bitters'
+gem 'i18n-tasks'
 
 group :development do
   gem 'foreman'

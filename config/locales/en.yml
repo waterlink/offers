@@ -1,11 +1,14 @@
+---
 en:
   date:
     formats:
-      default: '%m/%d/%Y'
-      with_weekday: '%a %m/%d/%y'
-
+      default: "%m/%d/%Y"
+      with_weekday: "%a %m/%d/%y"
+  offers_requests:
+    form:
+      create: Make request
   time:
     formats:
-      default: '%a, %b %-d, %Y at %r'
-      date: '%b %-d, %Y'
-      short: '%B %d'
+      date: "%b %-d, %Y"
+      default: "%a, %b %-d, %Y at %r"
+      short: "%B %d"

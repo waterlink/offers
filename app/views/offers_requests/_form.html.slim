@@ -1,2 +1,14 @@
 = form_for offers_request do |f|
-  p
+  div
+    = f.label :uid
+    = f.text_field :uid
+  div
+    = f.label :pub0
+    = f.text_area :pub0
+  div
+    = f.label :page
+    = f.number_field :page
+
+  div
+    = f.submit t('.create')
+
