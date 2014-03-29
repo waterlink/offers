@@ -7,6 +7,8 @@ en:
   offers_requests:
     form:
       create: Make request
+    index:
+      no_offers: No offers
   time:
     formats:
       date: "%b %-d, %Y"
