@@ -21,6 +21,7 @@ gem 'title'
 gem 'uglifier'
 gem 'puma'
 gem 'slim'
+gem 'bitters'
 
 group :development do
   gem 'foreman'
