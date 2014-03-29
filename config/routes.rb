@@ -1,4 +1,4 @@
 Offers::Application.routes.draw do
-  resources :home
+  resources :home, only: :index
   root to: 'home#index'
 end
