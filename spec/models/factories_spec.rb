@@ -5,7 +5,7 @@ describe 'factories' do
     specify "#{factory_name} factory is valid", :factory do
       factory = build(factory_name)
 
-      if factory.respond_to?(:valid?)
+      if factory.respond_to?(:valid?) && !factory_name.match(/invalid/)
         expect(factory).to be_valid, factory.errors.full_messages.join(',')
       end
     end

@@ -3,7 +3,9 @@ require 'spec_helper'
 describe 'offers_requests/_form.html.slim' do
   let!(:offers_request) { build :offers_request }
 
-  subject { render 'offers_requests/form.html.slim', offers_request: offers_request }
+  before { render 'offers_requests/form.html.slim', offers_request: offers_request }
+
+  subject { rendered }
 
   it { should have_css 'form' }
 
@@ -12,4 +14,13 @@ describe 'offers_requests/_form.html.slim' do
   it { should have_css 'input#offers_request_page[type=number]' }
 
   it { should have_css 'input[type=submit]' }
+
+  context 'invalid form' do
+    let!(:offers_request) { build :invalid_offers_request }
+
+    it { should have_css '.field_with_errors' }
+
+    it { should have_css '.error', text: 'can\'t be blank' }
+    it { should have_css '.error', text: 'is not a number' }
+  end
 end

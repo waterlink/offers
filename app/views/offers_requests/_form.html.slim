@@ -1,13 +1,16 @@
 = form_for offers_request do |f|
   div
     = f.label :uid
-    = f.text_field :uid
+    = f.text_field :uid, required: true
+    .error = offers_request.errors[:uid].join ', '
   div
     = f.label :pub0
     = f.text_area :pub0
+    .error = offers_request.errors[:pub0].join ', '
   div
     = f.label :page
-    = f.number_field :page
+    = f.number_field :page, required: true
+    .error = offers_request.errors[:page].join ', '
 
   div
     = f.submit t('.create')
