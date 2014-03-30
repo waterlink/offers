@@ -5,4 +5,6 @@ class Offer < ActiveRecord::Base
   column :payout, :string
   column :thumbnail, :string
   column :link, :string
+
+  validates_presence_of :title, :payout, :thumbnail, :link
 end

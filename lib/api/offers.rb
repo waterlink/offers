@@ -23,7 +23,8 @@ class Api::Offers
 
   def self.params_with_auth(params)
     params = params.slice(:uid, :pub0, :page).merge Rails.configuration.api['params']
-    params[:hash_key] = signature params, Rails.configuration.api['api_key']
+    params.merge! timestamp: Time.now.to_i
+    params[:hashkey] = signature params, Rails.configuration.api['api_key']
     params
   end
 
@@ -39,8 +40,9 @@ class Api::Offers
   end
 
   def self.check_signature(body, signature, api_key)
-    unless digest_algorightm("#{body}#{api_key}") == signature
-      raise Exception.new 'Offers server API responded with bad signature'
+    hash_key = digest_algorightm("#{body}#{api_key}")
+    unless hash_key == signature
+      raise Exception.new "Offers server API responded with bad signature (#{hash_key} != #{signature})"
     end
   end
 

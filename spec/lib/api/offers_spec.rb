@@ -13,7 +13,7 @@ describe Api::Offers do
 
       it 'returns valid signature' do
         expect(subject.signature params, api_key)
-          .to eq Digest::SHA1.hexdigest('hello=world&id=35&test=query&some_secret_api_key')
+          .to eq Digest::SHA1.hexdigest("hello=world&id=35&test=query&some_secret_api_key")
       end
     end
 
