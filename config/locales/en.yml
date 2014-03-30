@@ -9,6 +9,11 @@ en:
       create: Make request
     index:
       no_offers: No offers
+    pagination:
+      next:
+        next_page: Next page
+      prev:
+        prev_page: Prev page
   time:
     formats:
       date: "%b %-d, %Y"

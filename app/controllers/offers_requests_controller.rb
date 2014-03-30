@@ -19,6 +19,7 @@ class OffersRequestsController < ApplicationController
   #       especially when there are no offers
   #       available
   def test
+    @offers_request = build_test_request
     if Rails.env.development?
       @offers = build_test_offers
       render :index
@@ -36,5 +37,10 @@ class OffersRequestsController < ApplicationController
   def build_test_offers
     require 'factory_girl'
     [ FactoryGirl.build(:offer), FactoryGirl.build(:offer) ]
+  end
+
+  def build_test_request
+    require 'factory_girl'
+    FactoryGirl.build :offers_request
   end
 end

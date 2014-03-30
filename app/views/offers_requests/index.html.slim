@@ -1,5 +1,9 @@
 h1 Offers
 
+= render 'offers_requests/pagination',
+         has_prev: @offers_request.page > 1,
+         has_next: !@offers.blank?
+
 - if @offers.blank?
   .no_offers
     = t('.no_offers')

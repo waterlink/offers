@@ -19,15 +19,6 @@ class Api::Offers
     Digest::SHA1.hexdigest data
   end
 
-  private
-
-  def self.params_with_auth(params)
-    params = params.slice(:uid, :pub0, :page).merge Rails.configuration.api['params']
-    params.merge! timestamp: Time.now.to_i
-    params[:hashkey] = signature params, Rails.configuration.api['api_key']
-    params
-  end
-
   def self.get_offers(response)
     check_signature response.body,
                     response.headers[Rails.configuration.api['signature_header']],
@@ -39,6 +30,15 @@ class Api::Offers
     end
   end
 
+  private
+
+  def self.params_with_auth(params)
+    params = params.slice(:uid, :pub0, :page).merge Rails.configuration.api['params']
+    params.merge! timestamp: Time.now.to_i
+    params[:hashkey] = signature params, Rails.configuration.api['api_key']
+    params
+  end
+
   def self.check_signature(body, signature, api_key)
     hash_key = digest_algorightm("#{body}#{api_key}")
     unless hash_key == signature
@@ -47,7 +47,7 @@ class Api::Offers
   end
 
   def self.deserialize(offers)
-    offers.map do |offer|
+    offers && offers.map do |offer|
       offer = offer.slice 'title', 'link', 'thumbnail', 'payload'
       offer['thumbnail'] = offer['thumbnail']['lowres']
       Offer.new offer

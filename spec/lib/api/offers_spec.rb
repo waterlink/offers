@@ -54,6 +54,22 @@ describe Api::Offers do
         end
       end
 
+      context 'nil offers' do
+        let!(:offers_request) { build :offers_request, page: 10000 }
+
+        before do
+          Api::Offers.stub(get_offers: nil)
+          stub_request(:get, /api\.[^\/]*\//)
+            .to_return status: 200,
+                       headers: no_offers_headers,
+                       body: no_offers_response
+        end
+
+        it 'returns no offers' do
+          expect(subject.query offers_request).to be_blank
+        end
+      end
+
       context 'bad signature' do
         let!(:offers_request) { build :offers_request, page: 5000 }
         before do

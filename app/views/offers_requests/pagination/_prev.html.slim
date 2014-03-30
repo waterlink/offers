@@ -1,0 +1,5 @@
+= form_for @offers_request do |f|
+  = f.hidden_field :uid
+  = f.hidden_field :pub0
+  = f.hidden_field :page, value: @offers_request.page - 1
+  = f.submit t('.prev_page'), class: 'prev'
