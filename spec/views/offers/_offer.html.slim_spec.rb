@@ -10,4 +10,6 @@ describe 'offers/_offer.html.slim' do
   it { should have_css '.offer .title', text: offer.title }
   it { should have_css '.offer .payout', text: offer.payout }
   it { should have_css ".offer .thumbnail img[src=\"#{offer.thumbnail}\"]" }
+
+  it { should have_css "a[href=\"#{offer.link}\"]" }
 end

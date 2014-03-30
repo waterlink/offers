@@ -15,9 +15,26 @@ class OffersRequestsController < ApplicationController
     end
   end
 
+  # NOTE: It exists only for testing purposes
+  #       especially when there are no offers
+  #       available
+  def test
+    if Rails.env.development?
+      @offers = build_test_offers
+      render :index
+    else
+      render status: :forbidden, text: '403 Forbidden'
+    end
+  end
+
   private
 
   def offers_request_params
     params.require(:offers_request).permit :uid, :pub0, :page
+  end
+
+  def build_test_offers
+    require 'factory_girl'
+    [ FactoryGirl.build(:offer), FactoryGirl.build(:offer) ]
   end
 end

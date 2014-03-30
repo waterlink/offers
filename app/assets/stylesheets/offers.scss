@@ -1,0 +1,43 @@
+.no_offers {
+  @extend %flash-notice;
+}
+
+.offer {
+  @include row;
+
+  &:hover {
+    background-color: $light-gray;
+  }
+
+  div {
+    @include pad(10px);
+  }
+
+  .thumbnail {
+    @include span-columns(1);
+    img {
+      width: 100%;
+    }
+  }
+
+  .title {
+    @include span-columns(5);
+    color: $base-font-color;
+    font-size: $base-font-size * 1.5;
+  }
+
+  .payout {
+    @include span-columns(1);
+    color: $dark-gray;
+    font-size: $base-font-size * 2.5;
+  }
+}
+
+.hr-container {
+  @include row;
+
+  hr {
+    @include span-columns(8);
+  }
+}
+
