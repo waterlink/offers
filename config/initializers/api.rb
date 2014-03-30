@@ -13,6 +13,10 @@ rescue
     messages << 'API_ENDPOINT is not specified'
   end
 
+  if api_config['signature_header'].blank?
+    messages << 'API_SIGNATURE_HEADER is not specified'
+  end
+
   api_config['params'].each do |k, v|
     if v.blank?
       messages << "API_#{k.upcase} is not specified"
