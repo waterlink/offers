@@ -62,6 +62,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    concurrent-ruby (1.1.9)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     database_cleaner (1.2.0)
@@ -112,7 +113,8 @@ GEM
     httparty (0.13.0)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
-    i18n (0.6.9)
+    i18n (0.9.5)
+      concurrent-ruby (~> 1.0)
     i18n-tasks (0.3.9)
       activesupport
       easy_translate (>= 0.4.0)
